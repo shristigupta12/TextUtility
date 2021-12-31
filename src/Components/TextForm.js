@@ -29,12 +29,14 @@ export default function TextForm(props) {
         let newText = text.split(/[ ]+/);
         setText(newText.join(" "));
     }
+    
 
     return (
-        <div >
+
+        <div style={{color: props.mode==='light'?'black':'white'}}>
             <h1>{props.heading}</h1>
             <div className="mb-3">
-            <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8"></textarea>
+            <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8" style={{backgroundColor: props.mode==='light'?'white':'#343a40', color: props.mode==='light'?'black':'white'}}></textarea>
             </div>
             <button className="btn btn-primary mx-2" onClick={handleUppCaseClick} >Convert to Uppercase</button>
             <button className="btn btn-primary mx-2 my-1" onClick={handlelowCaseClick} >Convert to Lowercase</button>
@@ -44,7 +46,7 @@ export default function TextForm(props) {
             <p>Number of words: {text.split(" ").length} Number of characters: {text.length}</p>
             <p>Average time to read: {0.008 * text.split(" ").length} minutes</p>
             <h2>Preview</h2>
-            <p>{text}</p>
+            <p>{text.length===0?'Enter something to preview your text here':text}</p>
         </div>
     )
 }
